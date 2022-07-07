@@ -1,0 +1,133 @@
+.head {
+  background-color: var(--color-bg);
+  padding: 10px 0;
+  color: #fff;
+}
+
+.head i {
+  margin-right: 10px;
+}
+.head label {
+  margin-right: 30px;
+  font-size: 13px;
+}
+
+/* Search */
+
+.search {
+  background-color: hsl(0, 0%, 95%);
+  padding: 20px 0;
+  z-index: 1000;
+}
+.search .logo img {
+  width: 75%;
+  text-align: center;
+}
+
+.cart {
+  position: relative;
+}
+
+.search .f_flex {
+  justify-content: end;
+}
+
+
+header{
+  background-color: hsl(0, 0%, 95%);
+  color: var(--color-bg);
+  height: 7vh;
+  box-shadow: -1px 15px 17px -8px rgba(0, 0, 0, 0.1);
+}
+
+header ul{
+  line-height:8vh ;
+}
+
+header ul li{
+  margin-left: 30px;
+}
+
+header ul li a{
+
+  transition: 0.5s;
+  font-size:1rem;
+  font-weight: 400;
+}
+
+
+.open{
+  display: none;
+}
+
+.search.active{
+  height: 12vh;
+  position: fixed;
+  top: 0;
+  z-index: 1000;
+  width: 100%;
+  background-color: #fff;
+  box-shadow: -1px 11px 24px -11px rgba(0, 0, 0, 0.2);
+  transition: 0.5s;
+}
+
+
+@media (max-width:600px) {
+  header ul {
+    padding-top: 30px;
+  }
+
+  .search.active{
+    height: 12vh;
+  }
+  
+
+  .nav-links-MobileMenu{
+    position: absolute;
+    display: block;
+    list-style-type: none;
+    left: 0;
+    top: 0;
+    transition: 0.5s;
+    width: 60%;
+    height: 100vh;
+    background-color: #fff;
+    z-index: 888;
+    box-shadow: rgba(50, 50,93, 0.23) 0 50px 100px -20px, rgba(0, 0, 0, 0.3) 0 30px 60px -30px;
+  }
+
+  header ul li {
+    width: 100%;
+    transition: all 0.5s ease-in-out;
+    text-transform: uppercase;
+    line-height: 70px;
+  }
+  header .link {
+    display: none;
+  }
+  .close,
+  .open {
+    position: absolute;
+    top: 35px;
+    right: 20px;
+    color: var(--color-white);
+    display: block;
+    font-size: 25px;
+    z-index: 999;
+  }
+  .close {
+    right: 45%;
+  }
+  .close.home-btn {
+    background: linear-gradient(145deg, #e2e8ec, #ffffff);
+    color: var(--color-bg);
+    border-radius: 50%;
+    padding: 0;
+    width: 60px;
+    height: 60px;
+    line-height: 60px;
+  }
+  .header.active {
+    height: 10vh;
+  }
+}

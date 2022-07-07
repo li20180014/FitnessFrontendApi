@@ -1,0 +1,53 @@
+.container.staff__container {
+    width: 50%;
+    border-radius: 2rem;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+  }
+  .staff__avatar {
+    width: 7rem;
+    aspect-ratio: 1/1;
+    overflow: hidden;
+    border-radius: 50%;
+    margin: 0 auto 1rem;
+    border: 0.4rem solid var(--color-primary);
+  }
+  .staff {
+    background: var(--color-white);
+    text-align: center;
+    padding: 2rem;
+    border-radius: 2rem;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+    user-select: none;
+  }
+  .trainer__desc {
+    color: var(--color-light);
+    font-weight: 300;
+    display: block;
+  
+    margin: 0.8rem auto 0.8rem;
+  }
+
+  .trainer__name {
+    color: var(--color-bg);
+    
+  }
+  .swiper-pagination-bullet .swiper-pagination-bullet-active {
+    background: var(--color-primary);
+  }
+  @media (max-width: 1000px) {
+    .container.staff__container  {
+      width: 60%;
+    }
+  }
+  @media (max-width: 600px) {
+    .container.staff__container  {
+      width: 80%;
+    }
+  }
+  @media (max-width: 400px) {
+    .container.staff__container  {
+      width: 100%;
+    }
+  }
