@@ -1,23 +1,30 @@
 import axios from "axios";
+import jwtDecode from "jwt-decode";
 const API_URL = "http://localhost:8080/api/v1/users";
 const API_URL_LOGIN = "http://localhost:8080/api/v1";
 
 class AuthService {
-  login(username, password) {
+   login(username, password) {
     return axios
       .post(API_URL_LOGIN + "/login", {
         username,
-        password
+        password,
       })
-      .then(response => {
-        // if (response.data.accessToken) {
-        //   console.log(response.data);
-        //   localStorage.setItem("token", JSON.stringify(response.data));
-        // }
-        console.log(response);
+      .then((response) => {
+        if (response.headers.authorization) {
+           console.log(response);
+           var token = response.headers.authorization;
+            token = token.replace('Bearer ','');
+            localStorage.setItem("token", JSON.stringify(token));
+
+          //   var decoded = jwtDecode(token);
+          //   console.log(decoded);
+          // localStorage.setItem("token", JSON.stringify(decoded));
+        }
+        
         return response.data;
       });
-  }
+  };
 
   logout() {
     localStorage.removeItem("token");
@@ -33,7 +40,9 @@ class AuthService {
   }
 
   getCurrentToken() {
-    return JSON.parse(localStorage.getItem('token'));;
+    var token = localStorage.getItem('token');
+    var decoded = jwtDecode(token);
+    return JSON.parse(decoded);
   }
 
 }

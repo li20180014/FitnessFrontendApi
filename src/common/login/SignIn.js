@@ -13,6 +13,9 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import authService from '../../services/auth.service';
+import { useNavigate } from 'react-router-dom';
+
+
 function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
@@ -34,6 +37,7 @@ export default function SignIn() {
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
+  let navigate = useNavigate();
 
 
   const handleSubmit = (event) => {
@@ -42,6 +46,8 @@ export default function SignIn() {
     authService.login(username, password).then(
       () => {
         alert("Uspesan login!");
+        navigate("/profile");
+        window.location.reload();
       },
       (error) => {
         const resMessage =
