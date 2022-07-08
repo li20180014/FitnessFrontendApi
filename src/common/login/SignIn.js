@@ -37,6 +37,7 @@ export default function SignIn() {
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
+
   let navigate = useNavigate();
 
 
@@ -56,9 +57,9 @@ export default function SignIn() {
             error.response.data.message) ||
           error.message ||
           error.toString();
-
         setLoading(false);
         setMessage(resMessage);
+
       }
     );
  

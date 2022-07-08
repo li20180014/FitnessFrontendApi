@@ -16,10 +16,10 @@ class AuthService {
            var token = response.headers.authorization;
             token = token.replace('Bearer ','');
             localStorage.setItem("token", JSON.stringify(token));
-
-          //   var decoded = jwtDecode(token);
-          //   console.log(decoded);
-          // localStorage.setItem("token", JSON.stringify(decoded));
+            
+            var decoded = jwtDecode(token);
+            console.log(decoded);
+          localStorage.setItem("data", JSON.stringify(decoded));
         }
         
         return response.data;
@@ -28,6 +28,7 @@ class AuthService {
 
   logout() {
     localStorage.removeItem("token");
+    localStorage.removeItem("data");
   }
 
   register(firstName,lastName, email, password) {
@@ -40,9 +41,7 @@ class AuthService {
   }
 
   getCurrentToken() {
-    var token = localStorage.getItem('token');
-    var decoded = jwtDecode(token);
-    return JSON.parse(decoded);
+    return JSON.parse(localStorage.getItem('data'));;
   }
 
 }
