@@ -48,7 +48,7 @@ function MainFeaturedPost(props) {
               {post.title}
             </Typography>
             <Typography variant="h5" color="inherit" paragraph>
-              {post.text}
+            {post.text.substring(0,100)}...
             </Typography>
             
           </Box>

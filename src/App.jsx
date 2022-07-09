@@ -12,6 +12,7 @@ import Blog from './pages/Blog'
 import CreateBlog from './components/blog/CreateBlog'
 import ExerciseDetails from './pages/ExerciseDetails'
 import BlogPost from './components/blog/BlogPost'
+import Schedules from './pages/Schedules'
 import { Routes, Route } from 'react-router-dom'
 
 const App = () => {
@@ -23,6 +24,7 @@ const App = () => {
       <Routes>
       <Route path ="/" element={<Home/>}/>
       <Route path ="/login" element={<SignIn/>}/>
+      <Route path ="/schedules" element={<Schedules/>}/>
       <Route path ="/registration" element={<SignUp/>}/>
       <Route path ="/blog" element={<Blog/>}/>
       <Route path ="/create-blog" element={<CreateBlog/>}/>

@@ -14,6 +14,8 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import authService from "../../services/auth.service";
 
+//Odraditi validaciju
+
 function Copyright(props) {
   return (
     <Typography
@@ -56,7 +58,6 @@ export default function SignUp() {
           setSuccessful(true);
           alert("Successful registration!");
           navigate("/login");
-          window.location.reload();
         },
         (error) => {
           const resMessage =

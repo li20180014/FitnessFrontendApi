@@ -15,21 +15,26 @@ import blogService from "../../services/blog.service";
 import Alert from "@mui/material/Alert";
 import { AlertTitle } from "@mui/material";
 
+//Dodati ikonicu ili sliku + validacija polja + onChange 
+
 const theme = createTheme();
 
 export default function CreateBlog() {
   const [successful, setSuccessful] = useState(false);
   const [message, setMessage] = useState("");
-
+  const[title, setTitle]= useState("");
+  const[category, setCategory]= useState("");
+  const[text, setText]= useState("");
+  const[imageSrc, setImageSrc]= useState("");
 
   const handleSubmit = (event) => {
     event.preventDefault();
     blogService
       .createPost(
-        "Blog 4",
-        "Neki tekst",
-        "DIET",
-        "https://source.unsplash.com/random"
+        title,
+        text,
+        category,
+        imageSrc
       )
       .then(
         (response) => {
@@ -70,8 +75,15 @@ export default function CreateBlog() {
               Blog post created - <strong>Check it out!</strong>
             </Alert>
           )}
-          <Typography component="h1" variant="h5" fontFamily="Poppins">
-            Create Blog Post
+          <Typography
+            variant="h4"
+            fontWeight="bold"
+            sx={{ fontSize: { lg: "44px", xs: "30px" } }}
+            mb="40px"
+            
+            textAlign="center"
+          >
+            Create New Post
           </Typography>
           <Box
             component="form"
@@ -127,7 +139,7 @@ export default function CreateBlog() {
               multiline
             />
 
-            <Button variant="contained" component="label" width="5rem">
+            <Button variant="contained" component="label" style={{ maxWidth: "11rem" }}>
               Upload File
               <input type="file" hidden />
             </Button>
@@ -135,6 +147,7 @@ export default function CreateBlog() {
               type="submit"
               fullWidth
               variant="contained"
+              style={{ maxWidth: "11rem" }}
             >
               Create
             </Button>

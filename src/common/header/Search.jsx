@@ -25,16 +25,11 @@ const[loggedIn, setLoggedIn] = useState(false);
           </div>
           <div className="icon f_flex width">
             <div className="login">
-              <Link to="/registration">
+              {!loggedIn && (<Link to="/registration">
                 <i className="fa fa-user icon-circle"></i>
-              </Link>
+              </Link>)}
             </div>
-          
-            <div className="cart">
-              <Link to='/checkout'>
-              <i className="fa fa-shopping-bag icon-circle"></i>
-              </Link>
-            </div>
+
           </div>
         </div>
       </div>

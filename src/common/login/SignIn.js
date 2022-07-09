@@ -15,6 +15,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import authService from '../../services/auth.service';
 import { useNavigate } from 'react-router-dom';
 
+//Odraditi validaciju
 
 function Copyright(props) {
   return (
@@ -47,7 +48,7 @@ export default function SignIn() {
     authService.login(username, password).then(
       () => {
         alert("Uspesan login!");
-        navigate("/profile");
+        navigate("/");
         window.location.reload();
       },
       (error) => {

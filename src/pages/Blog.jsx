@@ -43,8 +43,6 @@ export default function Blog() {
     }
   };
 
-
-
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
@@ -58,7 +56,7 @@ export default function Blog() {
           </Box>
         )}
         <main>
-          {/* <MainFeaturedPost post={mainPost}  />  */}
+
           <Typography
             variant="h4"
             fontWeight="bold"
@@ -72,6 +70,9 @@ export default function Blog() {
           <Button onClick={handleClick} variant="contained">
             Create New Post
           </Button>
+          {posts.slice(0,1).map((post) => (
+          <MainFeaturedPost post={post}  /> 
+          ))}
           <Grid container spacing={4} mt="8px">
             {posts.map((post) => (
               <FeaturedPost key={post.title} post={post} />
