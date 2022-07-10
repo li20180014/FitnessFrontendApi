@@ -57,6 +57,12 @@ export const Navbar = () => {
               <li>
                 <Link to="/blog">Blog</Link>
               </li>
+              {
+                userRole == "ROLE_ADMIN" && 
+                <li>
+                  <Link to="/dashboard">Dashboard</Link>
+                </li>
+              }
               {showLogout && (
                 <li>
                   <a href="/login" onClick={logOut}>
