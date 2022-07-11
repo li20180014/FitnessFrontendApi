@@ -7,6 +7,10 @@ class UserService {
         const users = await axios(`${this.host}${this.path}`, {headers: authHeader()})
         return users;
     }
+
+    deleteUser = async (user) => {
+        return await axios(`${this.host}${this.path}/${user.email}`, {method:'DELETE', headers: authHeader()})
+    }
  
  }
  export default new UserService();
