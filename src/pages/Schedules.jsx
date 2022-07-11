@@ -11,7 +11,6 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import coachService from '../services/coach.service';
 
-
 const cards = [1, 2, 3, 4, 5, 6];
 
 const theme = createTheme();
