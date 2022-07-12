@@ -14,8 +14,8 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import authService from '../../services/auth.service';
 import { useNavigate } from 'react-router-dom';
+import Snackbar from '@mui/material/Snackbar';
 
-//Odraditi validaciju
 
 function Copyright(props) {
   return (
@@ -38,16 +38,25 @@ export default function SignIn() {
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
+  const [snackbarMessage, setSnackbarMessage] = useState(false);
 
   let navigate = useNavigate();
 
 
   const handleSubmit = (event) => {
     event.preventDefault();
+
+    if(!username || !password ||
+      username == 'undefined' ||
+      password == 'undefined')
+      {
+           alert('Please fill in all required fileds!')
+           return;
+      }
  
     authService.login(username, password).then(
       () => {
-        alert("Uspesan login!");
+        setSnackbarMessage("Successful login!")
         navigate("/");
         window.location.reload();
       },
@@ -60,7 +69,8 @@ export default function SignIn() {
           error.toString();
         setLoading(false);
         setMessage(resMessage);
-
+        console.log(error);
+        setSnackbarMessage("Error loging in!")
       }
     );
  
@@ -146,6 +156,12 @@ export default function SignIn() {
         </Box>
         <Copyright sx={{ mt: 8, mb: 4 }} />
       </Container>
+      <Snackbar
+                        open={snackbarMessage != ''}
+                        autoHideDuration={3000}
+                        onClose={() => setSnackbarMessage('')}
+                        message={snackbarMessage}
+                    />
     </ThemeProvider>
   );
 }

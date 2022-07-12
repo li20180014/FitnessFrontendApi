@@ -13,6 +13,7 @@ import CreateBlog from './components/blog/CreateBlog'
 import ExerciseDetails from './pages/ExerciseDetails'
 import BlogPost from './components/blog/BlogPost'
 import Schedules from './pages/Schedules'
+import Trainings from './pages/Trainings'
 import { Dashboard } from './pages/Dashboard'
 
 import { Routes, Route } from 'react-router-dom'
@@ -36,6 +37,7 @@ const App = () => {
       <Route path ="/profile" element={<Profile/>}/>
       <Route path="/exercise/:id" element={<ExerciseDetails />} />
       <Route path="/dashboard" element={<Dashboard />} />
+      <Route path="/trainings" element={<Trainings />} />
       </Routes>
     <Footer/>
     </>

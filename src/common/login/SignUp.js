@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
@@ -13,8 +13,7 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import authService from "../../services/auth.service";
-
-//Odraditi validaciju
+import Snackbar from "@mui/material/Snackbar";
 
 function Copyright(props) {
   return (
@@ -44,37 +43,57 @@ export default function SignUp() {
   const [password, setPassword] = useState("");
   const [successful, setSuccessful] = useState(false);
   const [message, setMessage] = useState("");
+  const [snackbarMessage, setSnackbarMessage] = useState(false);
 
   const handleSubmit = (event) => {
     event.preventDefault();
     setMessage("");
     setSuccessful(false);
 
-    authService
-      .register(firstName, lastName, email, password)
-      .then(
-        (response) => {
-          setMessage(response.data.message);
-          setSuccessful(true);
-          alert("Successful registration!");
-          navigate("/login");
-        },
-        (error) => {
-          const resMessage =
-            (error.response &&
-              error.response.data &&
-              error.response.data.message) ||
-            error.message ||
-            error.toString();
+    let regEmail =
+      /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    if (!regEmail.test(email)) {
+      alert("Invalid email address!");
+      return;
+    }
 
-          setMessage(resMessage);
-          setSuccessful(false);
-        
-        }
-      );
+    if (
+      !firstName || firstName.length <3 || lastName.length <3|| password.length <3||
+      !lastName ||
+      !email ||
+      !password ||
+      firstName == "undefined" ||
+      lastName == "undefined" ||
+      email == "undefined" ||
+      password == "undefined"
+    ) {
+      alert("Please fill in all required fileds!");
+      return;
+    }
 
-      console.log(successful);
-      console.log(message);
+    authService.register(firstName, lastName, email, password).then(
+      (response) => {
+        setMessage(response.data.message);
+        setSuccessful(true);
+        alert("Successful registration!");
+        navigate("/login");
+      },
+      (error) => {
+        const resMessage =
+          (error.response &&
+            error.response.data &&
+            error.response.data.message) ||
+          error.message ||
+          error.toString();
+
+        setMessage(resMessage);
+        setSuccessful(false);
+        setSnackbarMessage("Registration unsuccessful!")
+      }
+    );
+
+    console.log(successful);
+    console.log(message);
   };
 
   const onChangeName = (e) => {
@@ -188,6 +207,12 @@ export default function SignUp() {
         </Box>
         <Copyright sx={{ mt: 5 }} />
       </Container>
+      <Snackbar
+        open={snackbarMessage != ""}
+        autoHideDuration={3000}
+        onClose={() => setSnackbarMessage("")}
+        message={snackbarMessage}
+      />
     </ThemeProvider>
   );
 }

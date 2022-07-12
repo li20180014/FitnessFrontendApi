@@ -1,35 +1,23 @@
-import React from 'react'
-import av1 from '../../assets/av1.jpg'
-import av2 from '../../assets/av2.jpg'
+import React,{useState,useEffect} from 'react'
 import './staff.css'
 import { Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
+import coachService from '../../services/coach.service';
 
-
-const data = [
-{
-    id:1,
-    avatar: av1,
-    name: 'Lana Ilic',
-    desc: ' Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas repellat illum amet dolorem, quaerat quasi veniam animi at vitae incidunt facilis tenetur hic a reiciendis unde beatae sapiente eligendi porro. Quaerat quasi veniam animi at vitae incidunt facilis tenetur hic a reiciendis unde beatae sapiente eligendi porro.'
-},
-{
-    id:2,
-    avatar: av2,
-    name: 'Lana Ilic',
-    desc: ' Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas repellat illum amet dolorem, quaerat quasi veniam animi at vitae incidunt facilis tenetur hic a reiciendis unde beatae sapiente eligendi porro. Quaerat quasi veniam animi at vitae incidunt facilis tenetur hic a reiciendis unde beatae sapiente eligendi porro.'
-},
-{
-    id:3,
-    avatar: av2,
-    name: 'Lana Ilic',
-    desc: ' Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas repellat illum amet dolorem, quaerat quasi veniam animi at vitae incidunt facilis tenetur hic a reiciendis unde beatae sapiente eligendi porro. Quaerat quasi veniam animi at vitae incidunt facilis tenetur hic a reiciendis unde beatae sapiente eligendi porro.'
-}
-];
 
 const Staff = () => {
+
+  const [data,setData] = useState(null);
+
+  useEffect(() => {
+    coachService.getCoaches().then((response) => {
+      setData(response.data);
+    });
+
+  }, []);
+
   return (
     <section id="staff">
       <h5>Our Staff</h5>
@@ -40,13 +28,13 @@ const Staff = () => {
         spaceBetween={50}
         pagination={{ clickable: true }}
       >
-        {data.map((i) => (
+        {data!== null && data.map((i) => (
           <SwiperSlide key={i.id} className="staff">
             <div className="staff__avatar">
-              <img src={i.avatar} alt="" />
+              <img src={i.imageSrc} alt="coach" />
             </div>
-            <h5 className="trainer__name">{i.name}</h5>
-            <small className="trainer__desc">{i.desc}</small>
+            <h5 className="trainer__name">{i.firstName+" "+i.lastName}</h5>
+            <small className="trainer__desc">{i.biography}</small>
           </SwiperSlide>
         ))}
       </Swiper>

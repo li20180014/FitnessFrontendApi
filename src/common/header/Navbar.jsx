@@ -10,10 +10,8 @@ export const Navbar = () => {
 
   useEffect(() => {
     const token = authService.getCurrentToken();
-    console.log(token);
     if (token) {
       const role = token.authorities[0].authority;
-
       setUserRole(role);
       setShowProfile(true);
       setShowLogout(true);
@@ -25,7 +23,6 @@ export const Navbar = () => {
     setShowProfile(false);
     setShowLogout(false);
   };
-
 
 
   return (
