@@ -11,6 +11,10 @@ class UserService {
     deleteUser = async (user) => {
         return await axios(`${this.host}${this.path}/${user.email}`, {method:'DELETE', headers: authHeader()})
     }
+
+    addNewAdmin = async (adminData) => {
+        return await axios(`${this.host}${this.path}`, {method:'POST', data: adminData, headers: authHeader()})
+    }
  
  }
  export default new UserService();

@@ -8,6 +8,9 @@ class CoachService {
   getCoaches() {
     return axios.get(API_URL);
   }
-  
+
+  addNewCoach = async (coachData) => {
+    return await axios(API_URL, {method:'POST', data: coachData, headers: authHeader()})
+  }
 }
 export default new CoachService();
