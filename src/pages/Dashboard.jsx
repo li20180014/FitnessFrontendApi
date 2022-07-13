@@ -33,8 +33,6 @@ export const Dashboard = () =>{
     const [filteredUsers, setFilteredUsers] = useState([])
 
     const [usersPanel, setUsersPanel] = useState(false);
-    const [coachesPanel, setCoachesPanel] = useState(false);
-    const [adminsPanel, setAdminsPanel] = useState(false);
 
     const [deleteUserModalFlag, setDeleteUserModalFlag] = useState(false);
     const [createNewCoachModalFlag, setCreateNewCoachModalFlag] = useState(false);
@@ -48,14 +46,12 @@ export const Dashboard = () =>{
     const [addNewCoachData, setAddNewCoachData] = useState({});
     const [addNewAdminData, setAddNewAdminData] = useState({});
 
-    const fetchUsers = () =>{
-        userService.getUsers().then(response=>{
-            new Promise(resolve => setTimeout(resolve, 500))
-            .then(() => {
-                setUsers(response.data)
-                setFilteredUsers(response.data)
-            });
-            
+    const fetchUsers = () => {
+        userService.getUsers().then(response => {
+            // new Promise(resolve => setTimeout(resolve, 500))
+            setUsers(response.data)
+            setFilteredUsers(response.data)
+
         });
     }
     useEffect(() => {
@@ -63,9 +59,9 @@ export const Dashboard = () =>{
         if (!token || token.authorities[0]?.authority != 'ROLE_ADMIN') {
             navigate('/')
         }
-        
+
         fetchUsers();
-    },[])
+    }, [])
 
     const openDeleteUserModal = (user) =>{
         setUserForDelete(user)
@@ -177,84 +173,7 @@ export const Dashboard = () =>{
                                                     <Typography sx={{ fontWeight: 'bold' }}>{`${user.firstName} ${user.lastName}`}</Typography>
                                                     {user.email}
                                                 </Typography>
-                                                <IconButton aria-label="delete" color="primary" onClick={() => openDeleteUserModal(user)}>
-                                                    <DeleteIcon />
-                                                </IconButton>
-                                            </Box>
-                                            <Divider />
-                                        </Box>
-                                    )
-                                })}
-                            </Box>
-                        </AccordionDetails>
-                    </Accordion>
-                    <Accordion expanded={coachesPanel} onChange={() => setCoachesPanel(!coachesPanel)} elevation={6}>
-                        <AccordionSummary
-                            sx={{
-                                backgroundColor: coachesPanel ? 'primary.light' : 'initial',
-                                color: coachesPanel ? 'white' : 'initial'
-                            }}
-                            expandIcon={<ExpandMoreIcon />}
-                            aria-controls="panel1bh-content"
-                            id="panel1bh-header"
-                        >
-                            <Typography sx={{ width: '33%', flexShrink: 0, fontSize:'1.4em', fontWeight:'bold' }}>
-                                Coaches
-                            </Typography>
-                            <Typography sx={{ color: coachesPanel ? 'white' : 'initial' }}>Manage coaches</Typography>
-                        </AccordionSummary>
-                        <AccordionDetails sx={{display:'flex', flexDirection:'column'}}>
-                            <Box>
-                                {filteredUsers && filteredUsers.length > 0 && filteredUsers.map(user => {
-                                    return (
-                                        <Box key={user.id} sx={{ p: 1 }}>
-                                            <Box sx={{ display: 'flex', justifyContent:'space-between', alignItems: 'center' }}>
-                                                <Typography>
-                                                    <Typography sx={{ fontWeight: 'bold' }}>{`${user.firstName} ${user.lastName}`}</Typography>
-                                                    {user.email}
-                                                </Typography>
-                                                <IconButton aria-label="delete" color="primary" onClick={() => openDeleteUserModal(user)}>
-                                                    <DeleteIcon />
-                                                </IconButton>
-                                            </Box>
-                                            <Divider />
-                                        </Box>
-                                    )
-                                })}
-                            </Box>
-                            <Tooltip title="Create new coach">
-                                <Button sx={{ alignSelf: 'flex-end', p:2, mt:3 }} variant="contained" color="primary" onClick={createNewCoach} endIcon={<PersonAddIcon sx={{fontSize: '1.8em'}} />}>
-                                    Add New Coach
-                                </Button>
-                            </Tooltip>
-                        </AccordionDetails>
-                    </Accordion>
-                    <Accordion expanded={adminsPanel} onChange={() => setAdminsPanel(!adminsPanel)} elevation={6}>
-                        <AccordionSummary
-                            sx={{
-                                backgroundColor: adminsPanel ? 'primary.light' : 'initial',
-                                color: adminsPanel ? 'white' : 'initial'
-                            }}
-                            expandIcon={<ExpandMoreIcon />}
-                            aria-controls="panel1bh-content"
-                            id="panel1bh-header"
-                        >
-                            <Typography sx={{ width: '33%', flexShrink: 0, fontSize:'1.4em', fontWeight:'bold'}}>
-                                Admins
-                            </Typography>
-                            <Typography sx={{ color: adminsPanel ? 'white' : 'initial' }}>Manage Admins</Typography>
-                        </AccordionSummary>
-                        <AccordionDetails sx={{display:'flex', flexDirection:'column'}}>
-                            <Box>
-                                {filteredUsers && filteredUsers.length > 0 && filteredUsers.map(user => {
-                                    return (
-                                        <Box key={user.id} sx={{ p: 1 }}>
-                                            <Box sx={{ display: 'flex', justifyContent:'space-between', alignItems: 'center' }}>
-                                                <Typography>
-                                                    <Typography sx={{ fontWeight: 'bold' }}>{`${user.firstName} ${user.lastName}`}</Typography>
-                                                    {user.email}
-                                                </Typography>
-                                                {user.email != 'nbulat99@gmail.com' &&
+                                                {user.email != 'nbulat99@gmail.com' && 
                                                     <IconButton aria-label="delete" color="primary" onClick={() => openDeleteUserModal(user)}>
                                                         <DeleteIcon />
                                                     </IconButton>
@@ -265,11 +184,18 @@ export const Dashboard = () =>{
                                     )
                                 })}
                             </Box>
-                            <Tooltip title="Create new admin">
-                                <Button sx={{ alignSelf: 'flex-end', p:2, mt:3  }} variant="contained" color="primary" onClick={createNewAdmin} endIcon={<PersonAddIcon sx={{fontSize: '1.8em'}} />}>
-                                    Add New Admin
-                                </Button>
-                            </Tooltip>
+                            <Box sx={{display:'flex', justifyContent:'flex-end'}}>
+                                <Tooltip title="Create new coach">
+                                    <Button sx={{ alignSelf: 'flex-end', p: 2, mt: 3, mr:3 }} variant="contained" color="primary" onClick={createNewCoach} endIcon={<PersonAddIcon sx={{ fontSize: '1.8em' }} />}>
+                                        Add New Coach
+                                    </Button>
+                                </Tooltip>
+                                <Tooltip title="Create new admin">
+                                    <Button sx={{ alignSelf: 'flex-end', p: 2, mt: 3 }} variant="contained" color="primary" onClick={createNewAdmin} endIcon={<PersonAddIcon sx={{ fontSize: '1.8em' }} />}>
+                                        Add New Admin
+                                    </Button>
+                                </Tooltip>
+                            </Box>
                         </AccordionDetails>
                     </Accordion>
                     <Modal

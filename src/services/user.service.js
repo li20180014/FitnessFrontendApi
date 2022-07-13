@@ -16,5 +16,12 @@ class UserService {
         return await axios(`${this.host}${this.path}`, {method:'POST', data: adminData, headers: authHeader()})
     }
  
+    getUserProfile = async (email) =>{
+        return await axios(`${this.host}${this.path}/profile/${email}`, {headers: authHeader()})
+    }
+
+    updateUser = async (newUserData) =>{
+        return await axios(`${this.host}${this.path}/profile/${newUserData.email}`, {headers: authHeader(), method:'PUT', data: newUserData})
+    }
  }
  export default new UserService();
