@@ -1,6 +1,5 @@
 import React from 'react'
 import About from '../components/about/About'
-import Offers from '../components/offers/Offers'
 import Contact from '../components/contact/Contact'
 import Cards from '../components/cards/Cards'
 import images from '../components/slider/images'
@@ -19,7 +18,6 @@ const Home = () => {
     <div style={{backgroundColor: "#1A1A1D"}}>
       <Slider images = {images}/>
       <About/>
-      <Offers/>
       <Cards/>
       <Staff/>
       <Contact/>

@@ -36,6 +36,32 @@ const Cards = () => {
       desc: 'CrossFit can be used to accomplish any goal, from improved health to better performance.',
 
       
+    },
+    {
+
+      id:4,
+      image: "https://images.unsplash.com/photo-1584464491033-06628f3a6b7b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
+      title: 'Boxing',
+      desc: 'CrossFit can be used to accomplish any goal, from improved health to better performance.',
+
+      
+    },
+    {
+
+      id:5,
+      image: "https://images.unsplash.com/photo-1605296867304-46d5465a13f1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
+      title: 'Weightlifting',
+      desc: 'CrossFit can be used to accomplish any goal, from improved health to better performance.',
+
+      
+    }, {
+
+      id:6,
+      image: "https://images.unsplash.com/photo-1579150110123-55a33bcfa5d4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
+      title: 'Full Body Workout',
+      desc: 'CrossFit can be used to accomplish any goal, from improved health to better performance.',
+
+      
     }
   ]
 

@@ -14,10 +14,10 @@ const Head = () => {
             <label> info@synergy.rs</label>
           </div>
 
-          <div className='right row RText'>
+          {/* <div className='right row RText'>
             <label>FAQs</label>
             <label>Privacy Policy</label>
-          </div>
+          </div> */}
 
         </div>
       </div>

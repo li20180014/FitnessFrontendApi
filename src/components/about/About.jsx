@@ -1,6 +1,6 @@
 import React from "react";
 import "./about.css";
-import video from "../../assets/video1.mp4";
+import photo1 from "../../assets/photo1.jpg";
 
 import { FaAward } from "react-icons/fa";
 import { FiUsers } from "react-icons/fi";
@@ -15,9 +15,7 @@ const About = () => {
       <div className="container about__container">
         <div className="about__me">
           <div className="about__me-image">
-            <video loop autoPlay>
-              <source src={video} type="video/mp4" />
-            </video>
+            <img src={photo1} alt="" />
           </div>
         </div>
 

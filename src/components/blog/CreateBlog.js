@@ -14,48 +14,80 @@ import FormLabel from "@mui/material/FormLabel";
 import blogService from "../../services/blog.service";
 import Alert from "@mui/material/Alert";
 import { AlertTitle } from "@mui/material";
+import Snackbar from '@mui/material/Snackbar';
 
-//Dodati ikonicu ili sliku + validacija polja + onChange 
 
 const theme = createTheme();
 
 export default function CreateBlog() {
   const [successful, setSuccessful] = useState(false);
   const [message, setMessage] = useState("");
-  const[title, setTitle]= useState("");
-  const[category, setCategory]= useState("");
-  const[text, setText]= useState("");
-  const[imageSrc, setImageSrc]= useState("");
+  const [title, setTitle] = useState("");
+  const [category, setCategory] = useState("");
+  const [text, setText] = useState("");
+  const [imageSrc, setImageSrc] = useState("");
+  const [snackbarMessage, setSnackbarMessage] = useState(false);
+
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    blogService
-      .createPost(
-        title,
-        text,
-        category,
-        imageSrc
-      )
-      .then(
-        (response) => {
-          setMessage(response.data.message);
-          setSuccessful(true);
-        },
-        (error) => {
-          const resMessage =
-            (error.response &&
-              error.response.data &&
-              error.response.data.message) ||
-            error.message ||
-            error.toString();
 
-          setMessage(resMessage);
-          setSuccessful(false);
+    if(!title || !category || !text || !imageSrc ||
+      title == 'undefined' || text == 'undefined' || imageSrc == 'undefined' ||
+      category == 'undefined')
+      {
+           alert('Please fill in all required fileds!')
+           return;
+      }
+
+
+    console.log(category);
+    blogService.createPost(title, text, category, imageSrc).then(
+      (response) => {
+        setMessage(response.data.message);
+        setSnackbarMessage("Successfully added new blog post!");
+        setSuccessful(true);
+      },
+      (error) => {
+        const resMessage =
+          (error.response &&
+            error.response.data &&
+            error.response.data.message) ||
+          error.message ||
+          error.toString();
+        if(resMessage){
+          setSnackbarMessage(resMessage);
+        }else{
+          setSnackbarMessage("Error adding new blog post!");
         }
-      );
+        setMessage(resMessage);
+        setSuccessful(false);
+      }
+    );
     console.log(message);
     console.log(successful);
   };
+
+
+  const onChangeTitle = (e) => {
+    const title = e.target.value;
+    setTitle(title);
+  };
+
+  const onChangeText = (e) => {
+    const text = e.target.value;
+    setText(text);
+  };
+
+  const onChangeLink = (e) => {
+    const link = e.target.value;
+    setImageSrc(link);
+  };
+
+  const handleCategoryChange =(e)=>{
+    const cat = e.target.value;
+    setCategory(cat);
+  }
 
   return (
     <ThemeProvider theme={theme}>
@@ -69,18 +101,12 @@ export default function CreateBlog() {
             alignItems: "center",
           }}
         >
-          {successful && (
-            <Alert severity="success">
-              <AlertTitle>Success</AlertTitle>
-              Blog post created - <strong>Check it out!</strong>
-            </Alert>
-          )}
+
           <Typography
             variant="h4"
             fontWeight="bold"
             sx={{ fontSize: { lg: "44px", xs: "30px" } }}
             mb="40px"
-            
             textAlign="center"
           >
             Create New Post
@@ -98,6 +124,7 @@ export default function CreateBlog() {
               label="Blog Title"
               name="title"
               autoFocus
+              onChange={onChangeTitle}
               sx={{
                 input: {
                   fontWeight: "700",
@@ -110,7 +137,7 @@ export default function CreateBlog() {
               }}
             />
 
-            <FormControl>
+            <FormControl onChange={handleCategoryChange}>
               <FormLabel id="demo-row-radio-buttons-group-label">
                 Blog Category
               </FormLabel>
@@ -120,12 +147,12 @@ export default function CreateBlog() {
                 name="row-radio-buttons-group"
               >
                 <FormControlLabel
-                  value="female"
+                  value="DIET"
                   control={<Radio />}
                   label="Diet"
                 />
                 <FormControlLabel
-                  value="male"
+                  value="WORKOUT"
                   control={<Radio />}
                   label="Workout"
                 />
@@ -137,12 +164,18 @@ export default function CreateBlog() {
               label="Write your own text..."
               rows={6}
               multiline
+              onChange={onChangeText}
             />
 
-            <Button variant="contained" component="label" style={{ maxWidth: "11rem" }}>
-              Upload File
-              <input type="file" hidden />
-            </Button>
+            <TextField
+              margin="normal"
+              required
+              id="imageSrc"
+              label="Image Link"
+              name="imageSrc"
+              onChange={onChangeLink}
+              autoFocus
+            />
             <Button
               type="submit"
               fullWidth
@@ -154,6 +187,12 @@ export default function CreateBlog() {
           </Box>
         </Box>
       </Container>
+      <Snackbar
+                        open={snackbarMessage != ''}
+                        autoHideDuration={3000}
+                        onClose={() => setSnackbarMessage('')}
+                        message={snackbarMessage}
+                    />
     </ThemeProvider>
   );
 }

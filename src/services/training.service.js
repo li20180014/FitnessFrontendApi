@@ -16,5 +16,9 @@ class CoachService {
   getByMember(email){
     return axios.get(API_URL+"/member/"+email, {headers: authHeader()});
   }
+
+  create(date, startTime, endTime, maxSpots){
+    return axios.post(API_URL,{date, startTime, endTime, maxSpots}, {headers: authHeader()});
+  }
 }
 export default new CoachService();

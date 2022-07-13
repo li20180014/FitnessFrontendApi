@@ -4,6 +4,7 @@ import authService from "../../services/auth.service";
 
 export const Navbar = () => {
   const [showProfile, setShowProfile] = useState(false);
+  const [showSchedule, setShowSchedule] = useState(false);
   const [showLogout, setShowLogout] = useState(false);
   const [MobileMenu, setMobileMenu] = useState(false);
   const [userRole, setUserRole] = useState("");
@@ -15,6 +16,7 @@ export const Navbar = () => {
       setUserRole(role);
       setShowProfile(true);
       setShowLogout(true);
+      setShowSchedule(true);
     }
   }, []);
 
@@ -41,10 +43,10 @@ export const Navbar = () => {
               <li>
                 <Link to="/">Home</Link>
               </li>
-              
-              <li>
+              {showSchedule && (<li>
                 <Link to="/schedules">Schedules</Link>
-              </li>
+              </li>)}
+              
               {showProfile && (
                 <li>
                   <Link to="/profile">Profile</Link>
