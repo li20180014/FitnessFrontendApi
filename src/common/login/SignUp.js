@@ -67,7 +67,7 @@ export default function SignUp() {
       email == "undefined" ||
       password == "undefined"
     ) {
-      alert("Please fill in all required fileds!");
+      alert("Please fill in all required fields!");
       return;
     }
 
@@ -75,7 +75,7 @@ export default function SignUp() {
       (response) => {
         setMessage(response.data.message);
         setSuccessful(true);
-        alert("Successful registration!");
+        alert("Successful registration! Please verify your email!");
         navigate("/login");
       },
       (error) => {

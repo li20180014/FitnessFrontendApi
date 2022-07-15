@@ -71,6 +71,12 @@ header ul li a{
   transition: 0.5s;
 }
 
+@media (max-width:1400px) {
+  
+  .search.active{
+    height: 14vh;
+  }
+}
 
 @media (max-width:600px) {
   header ul {
@@ -78,7 +84,7 @@ header ul li a{
   }
 
   .search.active{
-    height: 12vh;
+    height: 14vh;
   }
   
 

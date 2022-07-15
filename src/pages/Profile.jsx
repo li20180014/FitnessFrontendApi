@@ -27,6 +27,8 @@ const Profile = () => {
   const [editMode, setEditMode] = useState(false);
   const [newUserData, setNewUserData] = useState(user);
   const [snackbarMessage, setSnackbarMessage] = useState(false);
+
+
   const fetchUser = (email) => {
     userService
       .getUserProfile(email)
@@ -38,6 +40,7 @@ const Profile = () => {
         console.log(error);
       });
   };
+  
   useEffect(() => {
     const email = authService.getCurrentToken().sub;
     if (!email) return;
@@ -100,7 +103,7 @@ const Profile = () => {
                     <Box>
                       <TextField
                         value={newUserData.firstName}
-                        label="FirstName"
+                        label="First Name"
                         onChange={(e) =>
                           setNewUserData({
                             ...newUserData,
@@ -114,7 +117,7 @@ const Profile = () => {
                       />
                       <TextField
                         value={newUserData.lastName}
-                        label="LirstName"
+                        label="Last Name"
                         onChange={(e) =>
                           setNewUserData({
                             ...newUserData,

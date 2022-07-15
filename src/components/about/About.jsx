@@ -7,6 +7,9 @@ import { FiUsers } from "react-icons/fi";
 import { VscFolderLibrary } from "react-icons/vsc";
 
 const About = () => {
+
+
+
   return (
     <section id="about">
       <h5>Get To Know</h5>
@@ -49,8 +52,8 @@ const About = () => {
             and tone with Synergy Fintess, no matter what your goal is.
           </p>
 
-          <a href="#contact" className="btn btn-primary">
-            Sign Up
+          <a href="#contact" className="btn btn-primary" >
+            Get In Touch
           </a>
         </div>
       </div>

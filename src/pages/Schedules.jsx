@@ -186,7 +186,7 @@ export default function Schedule() {
           <Grid container spacing={2}>
             <Grid item xs={12} md={6}>
               <Typography sx={{ mt: 10, mb: 2 }} variant="h6" component="div">
-                Your scheduled terms:
+                Your scheduled trainings:
               </Typography>
               <Demo>
                 <List >
@@ -239,7 +239,7 @@ export default function Schedule() {
             mb="40px"
             textAlign="center"
           >
-            Add available terms
+            Add available trainings
           </Typography>
           <Box
             component="form"

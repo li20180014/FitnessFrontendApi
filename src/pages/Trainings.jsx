@@ -56,7 +56,7 @@ const Trainings = () => {
             mb="40px"
             textAlign="center"
           >
-            Available Terms by {coach.firstName} {coach.lastName}
+            Available Trainings by {coach.firstName} {coach.lastName}
           </Typography>
           <Grid container spacing={4}>
             {data !== null &&

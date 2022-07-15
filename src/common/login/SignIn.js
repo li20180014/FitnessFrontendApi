@@ -50,7 +50,7 @@ export default function SignIn() {
       username == 'undefined' ||
       password == 'undefined')
       {
-           alert('Please fill in all required fileds!')
+           alert('Please fill in all required fields!')
            return;
       }
  
@@ -70,7 +70,7 @@ export default function SignIn() {
         setLoading(false);
         setMessage(resMessage);
         console.log(error);
-        setSnackbarMessage("Error loging in!")
+        setSnackbarMessage("Error loging in. Please check if you have verified your email!")
       }
     );
  

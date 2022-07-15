@@ -5,7 +5,6 @@ import Footer from './common/footer/Footer'
 import Home from './pages/Home'
 import SignIn from './common/login/SignIn'
 import SignUp from './common/login/SignUp'
-import Checkout from './common/cart/Checkout'
 import Exercise from './pages/Exercise'
 import Profile from './pages/Profile'
 import Blog from './pages/Blog'
@@ -19,8 +18,6 @@ import { Dashboard } from './pages/Dashboard'
 import { Routes, Route } from 'react-router-dom'
 
 const App = () => {
-
-
   return (
     <>
     <Header/>
@@ -32,7 +29,6 @@ const App = () => {
       <Route path ="/blog" element={<Blog/>}/>
       <Route path ="/create-blog" element={<CreateBlog/>}/>
       <Route path ="/blog-post" element={<BlogPost/>}/>
-      <Route path ="/checkout" element={<Checkout/>}/>
       <Route path ="/exercises" element={<Exercise/>}/>
       <Route path ="/profile" element={<Profile/>}/>
       <Route path="/exercise/:id" element={<ExerciseDetails />} />
