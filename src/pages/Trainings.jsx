@@ -27,6 +27,7 @@ const Trainings = () => {
 
     trainingService.scheduleAppointment(value.id).then((response) => {
       setSnackbarMessage("Successfully reserved training!");
+      window.location.reload();
     },
     (error)=>{
       const resMessage = error.response.data;

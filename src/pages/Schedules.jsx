@@ -183,27 +183,41 @@ export default function Schedule() {
         </Grid>
 
         {termsByMember !== null && (
-          <Grid container spacing={2}>
+          <Grid >
             <Grid item xs={12} md={6}>
               <Typography sx={{ mt: 10, mb: 2 }} variant="h6" component="div">
                 Your scheduled trainings:
               </Typography>
               <Demo>
-                <List >
+                <List sx={{
+                    width: "100%",
+                    bgcolor: "background.paper",
+                  }} >
                   {
-                    termsByMember.map((term)=>(
-                      <ListItem key={term.id}>
+                    termsByMember.map((term)=>{
+                      if(term.attended==null){
+                        term.attended="Not defined";
+                      }
+                      return (
+                     
+                      <ListItem key={term.training.id}>
                       <ListItemAvatar>
                         <Avatar>
                           <FolderIcon />
                         </Avatar>
                       </ListItemAvatar>
                       <ListItemText
-                        primary={term.date+ " by: " +term.coach.firstName+ " "+term.coach.lastName}
-                        secondary={"Start time: "+ term.startTime+ " End time: "+term.endTime}
+                        primary={term.training.date+ " by: " +term.training.coach.firstName+ " "+term.training.coach.lastName}
+                        secondary={"Start time: "+ term.training.startTime+ " End time: "+term.training.endTime}
+
+                      />
+                       <ListItemText
+                        // primary={"Start time: "+ term.training.startTime+ " End time: "+term.training.endTime}
+                        secondary={"Has attended: "+term.attended}
                       />
                     </ListItem>
-                    ))
+                    
+                    )})
                   }
                 </List>
               </Demo>

@@ -13,6 +13,7 @@ export const Navbar = () => {
     const token = authService.getCurrentToken();
     if (token) {
       const role = token.authorities[0].authority;
+    
       setUserRole(role);
       setShowProfile(true);
       setShowLogout(true);
@@ -63,6 +64,12 @@ export const Navbar = () => {
                 userRole == "ROLE_ADMIN" && 
                 <li>
                   <Link to="/dashboard">Dashboard</Link>
+                </li>
+              }
+              {
+                userRole == "ROLE_COACH" && 
+                <li>
+                  <Link to="/your-trainings">Your Trainings</Link>
                 </li>
               }
               {showLogout && (

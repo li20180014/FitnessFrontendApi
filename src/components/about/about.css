@@ -64,18 +64,18 @@ gap: 1.5rem;
 
 .about__icon{
   color:  var(--color-bg);
-  font-size: 1.4rem;
-  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
 }
 
 .about__card h5{
-    font-size: 0.95rem;
+    font-size: 0.85rem;
     color: var(--color-bg);
 
 }
 
 .about__card small{
-    font-size: 0.7rem;
+    font-size: 0.6rem;
     color: var(--color-light);
 }
 

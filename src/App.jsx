@@ -14,6 +14,7 @@ import BlogPost from './components/blog/BlogPost'
 import Schedules from './pages/Schedules'
 import Trainings from './pages/Trainings'
 import { Dashboard } from './pages/Dashboard'
+import CoachTrainings from './pages/CoachTrainings'
 
 import { Routes, Route } from 'react-router-dom'
 
@@ -34,6 +35,7 @@ const App = () => {
       <Route path="/exercise/:id" element={<ExerciseDetails />} />
       <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/trainings" element={<Trainings />} />
+      <Route path="/your-trainings" element={<CoachTrainings />} />
       </Routes>
     <Footer/>
     </>

@@ -49,7 +49,7 @@ const About = () => {
           <p>
             Step by step video workouts for home and gym to get fitter and
             stronger. Delicious, nutritionist-crafted meal plans based on your preferences. Build strength
-            and tone with Synergy Fintess, no matter what your goal is.
+            and tone with Synergy Fitness, no matter what your goal is.
           </p>
 
           <a href="#contact" className="btn btn-primary" >

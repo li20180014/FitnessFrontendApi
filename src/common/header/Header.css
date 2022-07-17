@@ -36,7 +36,7 @@
 header{
   background-color: hsl(0, 0%, 95%);
   color: var(--color-bg);
-  height: 7vh;
+  height: 8vh;
   box-shadow: -1px 15px 17px -8px rgba(0, 0, 0, 0.1);
 }
 

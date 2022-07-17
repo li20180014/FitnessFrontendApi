@@ -148,7 +148,7 @@ export const Dashboard = () =>{
             {(users && users.length > 0) ? 
                 <Box sx={{p:3}}>
 
-                    <Accordion expanded={usersPanel} onChange={() => setUsersPanel(!usersPanel)} elevation={6}>
+                    <Accordion expanded={usersPanel} onChange={() => setUsersPanel(!usersPanel)} elevation={1}>
                         <AccordionSummary
                             sx={{
                                 backgroundColor: usersPanel ? 'primary.light' : 'initial',
